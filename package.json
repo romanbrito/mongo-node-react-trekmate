@@ -1,0 +1,45 @@
+{
+  "name": "mongo-node-react-trekmate",
+  "version": "1.0.0",
+  "description": "An app to help groups enjoy the experience of a trip and avoid the pain of planning",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romanbrito/mongo-node-react-trekmate.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "mongo",
+    "trekmate"
+  ],
+  "author": "roman brito",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/romanbrito/mongo-node-react-trekmate/issues"
+  },
+  "homepage": "https://github.com/romanbrito/mongo-node-react-trekmate#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.10.0",
+    "eslint-plugin-react": "^7.4.0",
+    "nodemon": "^1.12.1",
+    "webpack": "^3.8.1"
+  }
+}
