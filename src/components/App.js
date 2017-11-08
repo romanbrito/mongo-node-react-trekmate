@@ -1,15 +1,21 @@
 import React from 'react';
 import Header from './Header';
 
-const App = () => {
-  return (
-    <div className="App">
-      <Header message="Components with modules" />
-      <div>
-        ...
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { test: 42 };
+  }
+  render() {
+    return (
+      <div className="App">
+        <Header message="Components with modules" />
+        <div>
+          {this.state.test}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
