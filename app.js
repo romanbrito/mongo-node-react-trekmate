@@ -8,6 +8,7 @@ import sassMiddleware from 'node-sass-middleware';
 
 import index from './routes/index';
 import users from './routes/users';
+import apiRouter from './api';
 
 const app = express();
 
@@ -44,5 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api', apiRouter);
 
 module.exports = app;
