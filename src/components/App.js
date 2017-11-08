@@ -6,7 +6,7 @@ import ContestPreview from './ContestPreview';
 class App extends Component {
   state = {
     pageHeader: 'Trekmate App',
-    contests: []
+    contests: this.props.initialContests
   };
   componentDidMount(){
     // ajax,  timers, listeners

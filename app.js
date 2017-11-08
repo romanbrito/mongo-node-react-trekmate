@@ -1,3 +1,4 @@
+import config from './config';
 import express from 'express';
 import path from 'path';
 import favicon from 'serve-favicon';
@@ -32,7 +33,7 @@ app.set('view engine', 'handlebars');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'sass'),
@@ -43,8 +44,22 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+import serverRender from './serverRender';
+
+app.get('/', (req,res) => {
+  serverRender()
+    .then(content => {
+      res.render('index', {
+        content
+      });
+    })
+    .catch(console.error);
+});
+
+// app.use('/', index);
+// app.use('/users', users);
 app.use('/api', apiRouter);
 
-module.exports = app;
+app.listen(config.port, config.host, () => {
+  console.info('Express listening on port', config.port, config.serverUrl);
+});

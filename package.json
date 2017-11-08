@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node ./bin/www --ignore public/",
+    "start": "nodemon --exec babel-node app.js --ignore public/",
     "dev": "webpack -wd"
   },
   "repository": {
