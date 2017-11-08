@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import sassMiddleware from 'node-sass-middleware';
 
+import index from './routes/index';
+import users from './routes/users';
+
 const app = express();
 
 // set handlebars
@@ -39,12 +42,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.send('Hello Express yes');
-});
-
-app.get('/hello', (req, res) => {
-  res.render('index', {title: 'hello'});
-});
+app.use('/', index);
+app.use('/users', users);
 
 module.exports = app;
