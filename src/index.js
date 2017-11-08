@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
-const App = () => {
+const App = (props) => {
   return (
-    <h2 className="text-center">Hello React Components!</h2>
+    <h2 className="text-center">
+      {props.headerMessage}
+    </h2>
   );
 };
 
+App.propTypes = {
+  headerMessage: PropTypes.string.isRequired
+};
+
 ReactDOM.render(
-  <App />,
+  <App headerMessage="Hello props!"/>,
   document.getElementById('root')
 );
