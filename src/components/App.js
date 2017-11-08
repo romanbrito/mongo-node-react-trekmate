@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import ContestPreview from './ContestPreview';
+import data from '../testData.json';
 
 class App extends Component {
   state = {
-    pageHeader: 'Trekmate App'
+    pageHeader: 'Trekmate App',
+    contests: []
   };
   componentDidMount(){
     // ajax,  timers, listeners
+    this.setState({
+      contests: data.contests
+    });
   }
   componentWillUnmount () {
     // clean timers, listeners
@@ -17,7 +22,7 @@ class App extends Component {
       <div className="App">
         <Header message={this.state.pageHeader} />
         <div>
-          {this.props.contests.map(contest =>
+          {this.state.contests.map(contest =>
             <ContestPreview key={contest.id}{...contest } />
           )}
         </div>
