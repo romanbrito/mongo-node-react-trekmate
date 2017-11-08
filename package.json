@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "start": "nodemon --exec babel-node ./bin/www --ignore public/",
     "dev": "webpack -wd"
   },
   "repository": {
@@ -25,10 +25,18 @@
   },
   "homepage": "https://github.com/romanbrito/mongo-node-react-trekmate#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
     "mongodb": "^2.2.33",
+    "morgan": "^1.9.0",
+    "node-sass-middleware": "^0.11.0",
+    "path": "^0.12.7",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
