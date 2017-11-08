@@ -6,13 +6,9 @@ class App extends Component {
     pageHeader: 'Trekmate App'
   };
   componentDidMount(){
-    console.log('did Mount');
-    debugger;
     // ajax,  timers, listeners
   }
   componentWillUnmount () {
-    console.log('will Unmount');
-    debugger;
     // clean timers, listeners
   }
   render() {
