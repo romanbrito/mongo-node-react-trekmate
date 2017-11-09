@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import ContestList from './ContestList';
 import Contest from './Contest';
+import * as api from '../api';
 
 const pushState = (obj, url) =>  //browser history for html5
   window.history.pushState(obj, '', url);
@@ -34,9 +35,15 @@ class App extends Component {
       `/contest/${contestId}` // backtick template literals
     );
     // lookup the contest
-    this.setState({
-      pageHeader: this.state.contests[contestId].contestName,
-      currentContestId: contestId
+    api.fetchContest(contestId).then(contest => {
+      this.setState({
+        pageHeader: contest.contestName,
+        currentContestId: contest.id,
+        contests: {
+          ...this.state.contests,
+          [contest.id]: contest
+        }
+      });
     });
   };
 
