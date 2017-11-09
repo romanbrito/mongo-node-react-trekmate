@@ -46,8 +46,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 import serverRender from './serverRender';
 
-app.get('/', (req,res) => {
-  serverRender()
+app.get(['/', '/contest/:contestId'], (req,res) => { // multiple routes
+  // console.log(req.params.contestId);
+  serverRender(req.params.contestId)
     .then(( { initialMarkup, initialData } ) => {
       res.render('index', {
         initialMarkup,
