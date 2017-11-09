@@ -32,6 +32,8 @@ class App extends Component {
       { currentContestId: contestId },
       `/contest/${contestId}` // backtick template literals
     );
+    // lookup the contest
+    this.setState({ pageHeader: this.state.contests[contestId].contestName});
   };
 
   render() {
