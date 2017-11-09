@@ -13,4 +13,10 @@ router.get('/contests', (req, res) => {
   });
 });
 
+router.get('/contests/:contestId', (req, res) => { // dynamic contestId
+  let contest = contests[req.params.contestId];
+  contest.description = 'fake description since using fake data still';
+  res.send(contest);
+});
+
 export default router;
