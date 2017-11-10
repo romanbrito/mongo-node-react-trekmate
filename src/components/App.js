@@ -9,6 +9,10 @@ import PropTypes from 'prop-types';
 const pushState = (obj, url) =>  //browser history for html5
   window.history.pushState(obj, '', url);
 
+const onPopstate = (handler) => {// browser's back button
+  window.onpopstate = handler;
+};
+
 class App extends Component {
   static propTypes = {
     initialData: PropTypes.object.isRequired
@@ -17,11 +21,17 @@ class App extends Component {
 
   componentDidMount() {
     // ajax,  timers, listeners
-
+    onPopstate((event) => {
+      this.setState({
+        currentContestId: (event.state || {}).currentContestId
+      });
+    });
   }
 
   componentWillUnmount() {
     // clean timers, listeners
+    // every time we register an event (onPopstate) we need to clean it
+    onPopstate(null);
   }
 
   fetchContest = (contestId) => {
