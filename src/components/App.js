@@ -17,13 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     // ajax,  timers, listeners
-    axios.get('/api/contests')
-      .then(resp => {
-        this.setState({
-          contests: resp.data.contests
-        });
-      })
-      .catch(console.error);
+
   }
 
   componentWillUnmount() {
