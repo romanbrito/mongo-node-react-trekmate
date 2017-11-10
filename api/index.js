@@ -1,22 +1,37 @@
 import express from 'express';
-//import data from '../src/testData.json';
+import { MongoClient } from 'mongodb';
+import assert from 'assert';
+import config from '../config';
+
+// mongodb
+let mdb;
+MongoClient.connect(config.mongodbUri, (err, db) => {
+  assert.equal(null, err);
+
+  mdb = db;
+});
 
 const router = express.Router();
-// const contests = data.contests.reduce((obj, contest) => { // turning array into object for efficiency
-//   obj[contest.id] = contest;
-//   return obj;
-// }, {});
+
 
 router.get('/contests', (req, res) => {
-  // res.send({
-  //   contests: contests
-  // });
+  //mongodb native driver
+  let contests = {}; //
+  mdb.collection('contests').find({})
+    .each((err, contest) => { //async so we cant res from each so workaround
+      assert.equal(null, err);
+
+      if (!contest) { // no more contests
+        res.send(contests);
+        return;
+      }
+
+      contests[contest.id] = contest;
+    });
 });
 
 router.get('/contests/:contestId', (req, res) => { // dynamic contestId
-  // let contest = contests[req.params.contestId];
-  // contest.description = 'fake description since using fake data still';
-  // res.send(contest);
+
 });
 
 export default router;
