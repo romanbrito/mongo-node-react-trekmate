@@ -55,7 +55,10 @@ app.get(['/', '/contest/:contestId'], (req,res) => { // multiple routes
         initialData
       });
     })
-    .catch(console.error);
+    .catch(error => {
+      console.error(error);
+      res.status(404).send('Bad request');
+    });
 });
 
 // app.use('/', index);

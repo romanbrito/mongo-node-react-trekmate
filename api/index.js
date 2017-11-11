@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
 
@@ -19,7 +19,6 @@ router.get('/contests', (req, res) => {
   let contests = {}; //
   mdb.collection('contests').find({})
     .project({ // only the fields to be included
-      id: 1,
       categoryName: 1,
       contestName: 1
     })
@@ -31,16 +30,16 @@ router.get('/contests', (req, res) => {
         return;
       }
 
-      contests[contest.id] = contest;
+      contests[contest._id] = contest;
     });
 });
 
 router.get('/names/:nameIds', (req, res) => { //http://localhost:8080/api/names/101,102
   //mongodb native driver
-  const nameIds = req.params.nameIds.split(',').map(Number); //converts array of string into number [101,102]
+  const nameIds = req.params.nameIds.split(',').map(ObjectID); //converts array of string into number [101,102]
 
   let names = {}; //
-  mdb.collection('names').find({ id: { $in: nameIds }})
+  mdb.collection('names').find({ _id: { $in: nameIds }})
     .each((err, name) => { //async so we cant res from each so workaround
       assert.equal(null, err);
 
@@ -49,13 +48,13 @@ router.get('/names/:nameIds', (req, res) => { //http://localhost:8080/api/names/
         return;
       }
 
-      names[name.id] = name;
+      names[name._id] = name;
     });
 });
 
 router.get('/contests/:contestId', (req, res) => { // dynamic contestId
   mdb.collection('contests')
-    .findOne({id: Number(req.params.contestId)})
+    .findOne({_id: ObjectID(req.params.contestId)})
     .then(contest => res.send(contest))
     .catch(console.error);
 });
