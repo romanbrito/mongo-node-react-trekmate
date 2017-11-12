@@ -9,7 +9,8 @@ class Contest extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.refs.newNameInput.value);
+    this.props.addName(this.refs.newNameInput.value, this.props._id);
+    this.refs.newNameInput.value = '';
   };
 
   render() {
@@ -50,7 +51,9 @@ class Contest extends Component {
                   ref="newNameInput"
                   className="form-control"/>
                 <span className="input-group-btn">
-                  <button type="submit" className="btn btn-info"></button>
+                  <button type="submit" className="btn btn-info">
+                    Submit
+                  </button>
                 </span>
               </div>
             </form>
@@ -67,11 +70,13 @@ class Contest extends Component {
 }
 
 Contest.propTypes = {
+  _id: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   contestListClick: PropTypes.func.isRequired,
   fetchNames: PropTypes.func.isRequired,
   nameIds: PropTypes.array.isRequired,
-  lookupName: PropTypes.func.isRequired
+  lookupName: PropTypes.func.isRequired,
+  addName: PropTypes.func.isRequired
 };
 
 export default Contest;
